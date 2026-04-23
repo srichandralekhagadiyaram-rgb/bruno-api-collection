@@ -1,0 +1,29 @@
+meta {
+  name: Update Invoiceitem
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{baseUrl}}/v1/action/update
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: 922e6f525c184bbdaca281a26f1c4341
+}
+
+body:json {
+  {
+    "objects": [
+          {
+        "Id": "8a8aa14d9cb84900019cd1bf278d69e7",
+        "II_Entity__c": "54",
+        "II_Department__c": "42",
+        "II_HomeClubNumber__c": "23333"
+      }
+    ],
+    "type": "InvoiceItem"
+  }
+}

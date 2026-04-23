@@ -1,0 +1,58 @@
+meta {
+  name: Cancellation Order
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{baseUrl}}/v1/orders
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: 268f1b935ca34548a414c9e11979dc16
+}
+
+body:json {
+  {
+    "existingAccountNumber": "A00000733", // Account no/Member Id on which we want to cancel subscription
+    "orderDate": "2026-03-06", //today's date [Date when order is submitted]
+    "subscriptions": [
+      {
+        "subscriptionNumber": "A-S00002558", //Subscription number we want to cancel
+        "orderActions": [
+          {
+            "type": "RemoveProduct",
+            "triggerDates": [
+              {
+                "name": "ContractEffective",
+                "triggerDate": "2026-03-01" ///Monthly fee next or next to next bill date
+              },
+              {
+                "name": "ServiceActivation", //Same as ContractEffective
+                "triggerDate": "2026-03-01"
+              }
+            ],
+            "removeProduct": {
+              "ratePlanId": "d2c47ba2d889cb84fd2cc2baf93443e4" //ID of monthly rate plan to remove ( Get it from existing subscription) - {[ratePlans][id]  where  "productRatePlanId": "original Value passed during Join"}
+            }
+          },
+          {
+            "type": "CancelSubscription",
+            "triggerDates": [
+              {
+                "name": "ContractEffective",
+                "triggerDate": "2027-02-15"
+              }
+            ],
+            "cancelSubscription": {
+              "cancellationPolicy": "SpecificDate",
+              "cancellationEffectiveDate": "2027-02-15" //Annual fee next or next to next bill date
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

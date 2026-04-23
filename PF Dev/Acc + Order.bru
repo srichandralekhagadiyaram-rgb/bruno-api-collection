@@ -1,0 +1,108 @@
+meta {
+  name: Acc + Order
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/v1/orders
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: 1be0f9381ce94091b0cbc0d4608be306
+}
+
+body:json {
+  {
+    "newAccount": {
+      "name": "GL Test 6",
+      "billCycleDay": 0,
+      "customFields": {
+        "JoinDate__c": "2026-03-01",
+        "AccountType__c": "Member"
+      },
+      "billToContact": {
+        "firstName": "Mitchel",
+        "lastName": "Taylor",
+        "address1": "2nd street",
+        "address2": "Dr SW",
+        "city": "Jersey city,",
+        "state": "New Jersey",
+        "country": "United States",
+        "workEmail": "sri.chandralekha.gadiyaram@pwc.com",
+        "postalCode": "07030"
+      },
+      "soldToContact": {
+        "firstName": "Club 101",
+        "lastName": "club",
+        "address1": "234 Shore",
+        "address2": "Dr SW",
+        "city": "Edwardsville,",
+        "state": "New Jersey",
+        "country": "United States",
+        "workEmail": "sri.chandralekha.gadiyaram@pwc.com",
+        "postalCode": "08817",
+        "HomeClubNumber__c": "456789"
+      },
+      "taxInfo": {
+        "companyCode": "G0001"
+      },
+      "paymentMethod": {
+        "type": "CreditCard",
+        "cardHolderInfo": {
+          "cardHolderName": "Planet Fitness"
+        },
+        "cardNumber": 4242424242424242,
+        "cardType": "Visa",
+        "expirationMonth": 12,
+        "expirationYear": 2027,
+        "securityCode": "123"
+      },
+      "currency": "USD"
+    },
+    "orderDate": "2026-03-01",
+    "subscriptions": [
+      {
+        "orderActions": [
+          {
+            "triggerDates": [
+              {
+                "name": "ServiceActivation",
+                "triggerDate": "2026-04-15"
+              },
+              {
+                "name": "ContractEffective",
+                "triggerDate": "2026-03-01"
+              }
+            ],
+            "type": "CreateSubscription",
+            "createSubscription": {
+              "terms": {
+                "initialTerm": {
+                  "termType": "EVERGREEN"
+                }
+              },
+              "subscribeToRatePlans": [
+                {
+                  "productRatePlanId": "d2c443181e4975f0a0c7630c19670083"
+                },
+                {
+                  "productRatePlanId": "d2c4f40d5a798311830832e3da04009c"
+                },
+                {
+                  "productRatePlanId": "d2c46641bac98312bf7832e4fc810093"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "processingOptions": {
+      "runBilling": true,
+      "collectPayment": true
+    }
+  }
+}

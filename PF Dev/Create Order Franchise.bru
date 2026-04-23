@@ -1,0 +1,67 @@
+meta {
+  name: Create Order Franchise
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{baseUrl}}/v1/orders
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: fbb2f29efae64615afbaccf4e2a47b14
+}
+
+body:json {
+  {
+    "existingAccountNumber": "A00000139",
+    "orderDate": "2026-02-01",
+    "subscriptions": [
+      {
+        "customFields": {
+          "ClubNumber__c": "7786"
+        },
+        "orderActions": [
+          {
+            "triggerDates": [
+              {
+                "name": "ServiceActivation",
+                "triggerDate": "2026-03-15"
+              },
+              {
+                "name": "ContractEffective",
+                "triggerDate": "2026-02-01"
+              }
+            ],
+            "type": "CreateSubscription",
+            "createSubscription": {
+              "terms": {
+                "initialTerm": {
+                  "termType": "EVERGREEN"
+                }
+              },
+              "subscriptionNumber": "G0001-7786",
+              "subscribeToRatePlans": [
+                {
+                  "productRatePlanId": "fee1f77461a9818065881c39e9e60261"
+                },
+                {
+                  "productRatePlanId": "fee1acbccfc9818065d81df814d604da"
+                },
+                {
+                  "productRatePlanId": "fee1d0c85fb9818065881c39e9cb035d"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "processingOptions": {
+      "runBilling": false,
+      "collectPayment": false
+    }
+  }
+}

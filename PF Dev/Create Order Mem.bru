@@ -1,0 +1,63 @@
+meta {
+  name: Create Order Mem
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/v1/orders
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: 8a05663b3cfa403288e901f9dad7d56c
+}
+
+body:json {
+  {
+    "existingAccountNumber": "A00000720",
+    "orderDate": "2026-02-01",
+    "subscriptions": [
+      {
+        "orderActions": [
+          {
+            "triggerDates": [
+              {
+                "name": "ServiceActivation",
+                "triggerDate": "2026-03-15"
+              },
+              {
+                "name": "ContractEffective",
+                "triggerDate": "2026-02-01"
+              }
+            ],
+            "type": "CreateSubscription",
+            "createSubscription": {
+              "terms": {
+                "initialTerm": {
+                  "termType": "EVERGREEN"
+                }
+              },
+              "subscribeToRatePlans": [
+                {
+                  "productRatePlanId": "fee1acbccd89818065d81c258c1b0397"
+                },
+                {
+                  "productRatePlanId": "fee1c11a42d9818066481c258d610703"
+                },
+                {
+                  "productRatePlanId": "fee1a368f2a983b48db83b66dcd70000"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "processingOptions": {
+      "runBilling": true,
+      "collectPayment": false
+    }
+  }
+}

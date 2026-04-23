@@ -1,0 +1,17 @@
+meta {
+  name: OAuth Token
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/oauth/token
+  body: formUrlEncoded
+  auth: inherit
+}
+
+body:form-urlencoded {
+  grant_type: client_credentials
+  client_id: {{client_id}}
+  client_secret: {{client_secret}}
+}

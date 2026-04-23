@@ -1,0 +1,25 @@
+meta {
+  name: Reverse Payment
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{baseUrl}}/v1/gateway-settlement/payments/PMT00002580/chargeback
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: 1be0f9381ce94091b0cbc0d4608be306
+}
+
+body:json {
+  {
+    "amount": 11.73,
+    "gatewayResponseCode": "",
+    "gatewayResponse": "Invalid Card",
+     "gatewayReconciliationReason": "insufficient Funds",
+    "gatewayReconciliationStatus": "failedToSettled"
+  }
+}
